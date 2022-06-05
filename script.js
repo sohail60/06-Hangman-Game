@@ -66,6 +66,10 @@ playAgain.addEventListener('click',function(){
     indexArray=[];
     wrongCount=0;
     rightCount=0;
+
+    figureParts.forEach(function(part,index){
+        part.style.display="none";
+    })
 })
 
 let wrongWords=[];
