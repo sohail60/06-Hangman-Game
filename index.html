@@ -11,7 +11,9 @@
     <h1>Hangman</h1>
     <p>Find the hidden word - Enter a letter</p>
     <p>Guess the word before the picture completes</p>
+
     <div class="container">
+        <!-- Figure -->
         <svg class="figure" height="280" width="230">
             <line x1="20" y1="250" x2="100" y2="250"/>
             <line x1="60" y1="50" x2="60" y2="250"/>
@@ -24,31 +26,25 @@
             <line x1="140" y1="180" x2="110" y2="200" class="figure-part"/>
             <line x1="140" y1="180" x2="170" y2="200" class="figure-part"/>
         </svg>
+
         <div class="info">
             <span class="wrong"></span>
             <span class="wrong-letter"></span>
         </div>
     </div>
 
-    <div class="word">
-        <!-- <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span> -->
-    </div>
+    <!-- Here the ranom words will appear -->
+    <div class="word"></div>
 
     <div class="popup-container">
         <div class="popup">
-            <h3 class="message">You Won</h3>
-            <button id="btn">Play Again</button>
+            <h3 class="message"></h3>
+            <button id="btn"></button>
         </div>
     </div>
 
     <div class="notification">
-        <p>
-            You have already entered this key
-        </p>
+        <p>You have already entered this key</p>
     </div>
     <script src="script.js"></script>
 </body>

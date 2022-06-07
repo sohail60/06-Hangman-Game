@@ -3,14 +3,14 @@
 }
 
 body{
-    background-color: #34495e;
-    color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0;
+    background-color: #34495e;
+    color: #fff;
     height: 100vh;
+    margin: 0;
     overflow: hidden;
 }
 
@@ -26,33 +26,29 @@ h1{
 p{
     margin: 7px;
 }
-.figure{
+
+.figure{        /* Styling of SVG Figure */
     fill: transparent;
     stroke: #fff;
     stroke-width: 4px;
     stroke-linecap: round;
-    /* border: 2px solid red; */
     margin-right: 10px;
 }
 
 .container{
-    /* border: 2px solid brown; */
-    margin-top: 50px;
     display: flex;
-    
+    margin-top: 50px;
 }
 
 .info{
-    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
     width: 150px;
-    text-align: right;
     margin: 5px;
+    text-align: right;
 }
 
 .wrong-letter{
-    /* border: 2px solid red; */
     margin-top: 5px;
     font-size: 25px;
     font-weight: 300;
@@ -61,59 +57,50 @@ p{
 
 .word{
     display: flex;
-    /* align-items: space-between;
-    justify-content: space-between; */
-    /* margin: 10px; */
-
 }
 
 .letter{
-    /* visibility: hidden; */
-    font-size: 25px;
-    text-align: center;
-    border-bottom: 2.5px solid #2980b9;
     height: 35px;
     width: 40px;
     margin: 5px;
+    border-bottom: 2.5px solid #2980b9;
+    font-size: 25px;
+    text-align: center;
 }
 
 .popup-container{
-    background-color: rgba(0, 0, 0, 0.3);
-    /* border: 2px solid red; */
-    padding: 15px;
-    /* display: flex; */
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .popup{
     display: flex;
-    /* display: none; */
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 250px;
     margin: 20px 10px;
     padding: 15px;
-    background-color: #2980b9;
-    /* border: 2px solid blue; */
     border-radius: 15px;
+    background-color: #2980b9;
     box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
 }
 
 #btn{
-    cursor: pointer;
-    padding: 15px 25px;
     border: none;
     border-radius: 5px;
+    padding: 15px 25px;
     margin: 15px;
+    cursor: pointer;
 }
 
 #btn:active{
@@ -125,13 +112,12 @@ p{
 }
 
 .notification{
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    /* border-radius-to: 10px; */
     position: absolute;
     bottom: -60px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     transition: transform 0.3s ease-in-out;
 }
 

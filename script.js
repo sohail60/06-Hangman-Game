@@ -6,16 +6,22 @@ const wrongLetters=document.querySelector('.wrong-letter');
 const popup=document.querySelector('.popup-container');
 const message=document.querySelector('.message');
 const figureParts=document.querySelectorAll('.figure-part');
-let wordsArray=['programming','cricket','javascript','project'];
-let randomWord='';
-let randomNumber='';
+
+let wordsArray=['programming','cricket','javascript','project','frontend','tech'];
+let typedLettersArray=[];
+let indexArray=[];
+let wrongCount=1;
+let rightCount=0;
+let wrongLettersArray=[];
 
 let letterArray=letterArrayReturn();
 
+displayWords();
+
+// Functions
 function letterArrayReturn(){
     let randomNumber=Math.floor(Math.random()*wordsArray.length);
     let randomWord=wordsArray[randomNumber];
-    console.log(randomWord);
     return randomWord.split('');
 }
 
@@ -23,7 +29,7 @@ function displayWords(){
     word.innerHTML=``;
     letterArray.forEach(function(element){
         word.innerHTML+=`<span class="letter"></span>`
-    })
+    });
 }
 
 function showNotification(e){
@@ -34,12 +40,6 @@ function showNotification(e){
         },2000)
     }
 }
-
-displayWords();
-let typedLetters=[];
-let indexArray=[];
-let wrongCount=1;
-let rightCount=0;
 
 function lostGameCheck(){
     if(wrongCount===7){
@@ -55,31 +55,31 @@ function wonGameCheck(){
     }
 }
 
+// Event Listeners
 playAgain.addEventListener('click',function(){
+    // Reseting everything
     popup.style.display='none';
     wrong.innerText='';
     wrongLetters.innerText='';
     letterArray=letterArrayReturn();
     console.log(letterArray);
     displayWords();
-    typedLetters=[];
+    typedLettersArray=[];
     indexArray=[];
     wrongCount=0;
     rightCount=0;
-
     figureParts.forEach(function(part,index){
         part.style.display="none";
     })
-})
+});
 
-let wrongWords=[];
 document.addEventListener('keydown',function(e){
     console.log("executing This");
-    if(e.keyCode>=65 && e.keyCode<=90 && !letterArray.includes(e.key) && !wrongWords.includes(e.key)){
-        wrongWords.push(e.key);
+    if(e.keyCode>=65 && e.keyCode<=90 && !letterArray.includes(e.key) && !wrongLettersArray.includes(e.key)){
+        wrongLettersArray.push(e.key);
     }
         figureParts.forEach(function(part,index){
-            let errors=wrongWords.length;
+            let errors=wrongLettersArray.length;
 
             if(index<errors){
                 part.style.display="block";
@@ -90,14 +90,14 @@ document.addEventListener('keydown',function(e){
 document.addEventListener('keydown',function(e){
     rightCount=0;
     console.log('Reset');
-    if(!letterArray.includes(e.key) && wrongCount<7 && !typedLetters.includes(e.key) && (e.keyCode>=65 && e.keyCode<=90)){
+    if(!letterArray.includes(e.key) && wrongCount<7 && !typedLettersArray.includes(e.key) && (e.keyCode>=65 && e.keyCode<=90)){
         wrong.innerText='Wrong';
         wrongLetters.innerHTML+=`${e.key}`+' ';
         wrongCount++;
         lostGameCheck();
     }
 
-    if(typedLetters.includes(e.key)){
+    if(typedLettersArray.includes(e.key)){
         showNotification(e);
     } else {
         word.innerHTML='';
@@ -109,7 +109,7 @@ document.addEventListener('keydown',function(e){
                 console.log('Index Array:', indexArray);
             }
         }
-        typedLetters.push(e.key);
+        typedLettersArray.push(e.key);
         letterArray.forEach(function(element,index){
         if(indexArray.includes(index)){
             word.innerHTML+=`<span class="letter">${element}</span>`
