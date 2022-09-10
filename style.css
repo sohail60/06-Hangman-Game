@@ -98,9 +98,11 @@ p{
 #btn{
     border: none;
     border-radius: 5px;
-    padding: 15px 25px;
+    padding: 15px 20px;
     margin: 15px;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 #btn:active{

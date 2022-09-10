@@ -22,12 +22,12 @@ displayWords();
 function letterArrayReturn(){
     let randomNumber=Math.floor(Math.random()*wordsArray.length);
     let randomWord=wordsArray[randomNumber];
-    return randomWord.split('');
+    return randomWord.split('');        // This splits every character of the String and makes a new Array
 }
 
 function displayWords(){
     word.innerHTML=``;
-    letterArray.forEach(function(element){
+    letterArray.forEach(function (element) {
         word.innerHTML+=`<span class="letter"></span>`
     });
 }
@@ -45,6 +45,7 @@ function lostGameCheck(){
     if(wrongCount===7){
         popup.style.display='flex';
         message.innerText='So Sad! You Lost :(';
+        playAgain.innerText='Play Again';
     }
 }
 
@@ -52,6 +53,7 @@ function wonGameCheck(){
     if(rightCount===letterArray.length){
         popup.style.display='flex';
         message.innerText='Yayy! You Won :)';
+        playAgain.innerText='Play Again';
     }
 }
 
@@ -62,10 +64,10 @@ playAgain.addEventListener('click',function(){
     wrong.innerText='';
     wrongLetters.innerText='';
     letterArray=letterArrayReturn();
-    console.log(letterArray);
     displayWords();
     typedLettersArray=[];
     indexArray=[];
+    wrongLettersArray=[];
     wrongCount=0;
     rightCount=0;
     figureParts.forEach(function(part,index){
@@ -74,22 +76,25 @@ playAgain.addEventListener('click',function(){
 });
 
 document.addEventListener('keydown',function(e){
-    console.log("executing This");
-    if(e.keyCode>=65 && e.keyCode<=90 && !letterArray.includes(e.key) && !wrongLettersArray.includes(e.key)){
-        wrongLettersArray.push(e.key);
-    }
+    let inputKey=e.key.toLowerCase();
+    let inputKeyCode=e.keyCode;
+    if(inputKeyCode>=65 && inputKeyCode<=90 && !letterArray.includes(inputKey) && !wrongLettersArray.includes(inputKey)){
+        wrongLettersArray.push(inputKey);
+        console.log("running");
+        
+        console.log(wrongLettersArray.length+' Before')
         figureParts.forEach(function(part,index){
             let errors=wrongLettersArray.length;
-
+            console.log('errors='+errors +' and index='+index)
             if(index<errors){
                 part.style.display="block";
             }
         })
+    }
 });
 
 document.addEventListener('keydown',function(e){
     rightCount=0;
-    console.log('Reset');
     if(!letterArray.includes(e.key) && wrongCount<7 && !typedLettersArray.includes(e.key) && (e.keyCode>=65 && e.keyCode<=90)){
         wrong.innerText='Wrong';
         wrongLetters.innerHTML+=`${e.key}`+' ';
@@ -101,12 +106,9 @@ document.addEventListener('keydown',function(e){
         showNotification(e);
     } else {
         word.innerHTML='';
-        console.log('Key: ',e.key);
-        console.log(letterArray.length);
         for(let i=0;i<letterArray.length;i++){
             if(letterArray[i]===(e.key)){
                 indexArray.push(i);
-                console.log('Index Array:', indexArray);
             }
         }
         typedLettersArray.push(e.key);
@@ -114,7 +116,6 @@ document.addEventListener('keydown',function(e){
         if(indexArray.includes(index)){
             word.innerHTML+=`<span class="letter">${element}</span>`
             rightCount++;
-            console.log('rightCount: ',rightCount);
         } else {
             word.innerHTML+=`<span class="letter"></span>`
         }

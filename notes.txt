@@ -1,0 +1,3 @@
+svg is used
+
+grey: #34495e
